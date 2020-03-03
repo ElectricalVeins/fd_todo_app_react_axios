@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default function UsersList (props) {
 
-  const { items, isFetching } = this.props;
+  const { users, isFetching } = props;
 
   return (
     <ol>
       {
-        items.map(item => (
+        users.map(item => (
           <li
             key={item.id}>
             {
-              `${item.firstName} ${item.lastname}`
+              `${item.firstName} ${item.lastName}`
             }
 
           </li>))
@@ -22,3 +23,19 @@ export default function UsersList (props) {
     </ol>
   );
 }
+
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape({
+                                             id: PropTypes.oneOfType([
+                                                                       PropTypes.string,
+                                                                       PropTypes.number]),
+                                             firstName: PropTypes.string.isRequired,
+                                             lastName: PropTypes.string.isRequired,
+                                             email: PropTypes.string.isRequired,
+                                             profilePicture: PropTypes.string.isRequired
+                                           })).isRequired
+};
+
+UsersList.defaultProps = {
+  users: [],
+};

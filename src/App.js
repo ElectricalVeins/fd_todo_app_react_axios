@@ -9,7 +9,7 @@ import './App.css';
 import TasksList from './components/TasksList';
 import UsersList from './components/UsersList';
 import withData from './components/HOC/withData.js';
-
+import DataLoader from './components/List/index.js';
 /*class App extends React.Component {
     constructor(props) {
         super(props);
@@ -131,6 +131,11 @@ export default function (props) {
     <div style={{ display: 'flex' }}>
       <UsersListWithData/>
       <TasksListWithData/>
+
+      <DataLoader render={data => (<TasksList tasks={data}/>)}
+                  loadData={getUserTasks}/>
+      <DataLoader render={data => (<UsersList users={data}/>)}
+                  loadData={getUsersList}/>
     </div>
   );
 }
