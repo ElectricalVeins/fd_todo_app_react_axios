@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl='http://192.168.0.109:3030/api'
+const baseUrl='http://192.168.0.113:3030/api'
 
 axios.interceptors.request.use((config) => {
 
@@ -10,6 +10,7 @@ axios.interceptors.request.use((config) => {
 }, (error) => {
     return Promise.reject(error)
 });
+
 /**
  * send request
  * @param task
@@ -27,4 +28,8 @@ export async function getUserTasks() {
 
 export async function updateTaskById(id,data) {
     return axios.put(`${baseUrl}/task/${id}`,data)
+}
+
+export async function getUsersList () {
+    return axios.get(`${baseUrl}/users`)
 }
