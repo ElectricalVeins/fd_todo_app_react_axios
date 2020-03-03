@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Switch, Link, Route } from 'react-router-dom';
 import {
   createTask as createTaskReq,
   getUsersList,
@@ -9,7 +10,10 @@ import './App.css';
 import TasksList from './components/TasksList';
 import UsersList from './components/UsersList';
 import withData from './components/HOC/withData.js';
-import DataLoader from './components/List/index.js';
+import DataLoader from './components/DataLoader/index.js';
+import Home from './pages/Home.js'
+import About from './pages/About.js'
+import Contacts from './pages/Contacts.js'
 /*class App extends React.Component {
     constructor(props) {
         super(props);
@@ -128,14 +132,53 @@ const TasksListWithData = withData(TasksList, getUserTasks);
 
 export default function (props) {
   return (
-    <div style={{ display: 'flex' }}>
-      <UsersListWithData/>
-      <TasksListWithData/>
 
-      <DataLoader render={data => (<TasksList tasks={data}/>)}
-                  loadData={getUserTasks}/>
-      <DataLoader render={data => (<UsersList users={data}/>)}
-                  loadData={getUsersList}/>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path ='/'>
+          <Home/>
+        </Route>
+        <Route exact path ='/about'>
+          <About/>
+        </Route>
+        <Route exact path ='/contacts'>
+          <Contacts/>
+        </Route>
+      </Switch>
+    </BrowserRouter>
+
   );
 }
+
+
+/*
+      <div>
+
+        <ul>
+          <li>
+            <Link to="/tasks">Tasks</Link>
+          </li>
+
+          <li>
+            <Link to="/users">Users</Link>
+          </li>
+        </ul>
+
+        <hr/>
+
+        <div style={{ display: 'flex' }}>
+          <Switch>
+            <Route  path='/tasks' render={()=>(<DataLoader render={data => (<TasksList tasks={data || []}/>)}
+                                                          loadData={getUserTasks}/>)} />
+
+            <Route path='/users' render={()=>(    <DataLoader render={data => (<UsersList users={data || []}/>)}
+                                                         loadData={getUsersList}/>)} />
+
+
+
+          </Switch>
+
+        </div>
+
+      </div>
+*/

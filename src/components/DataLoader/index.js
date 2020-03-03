@@ -6,7 +6,7 @@ export default class DataLoader extends Component {
     super(props);
     this.state = {
       isFetching: false,
-      data: [],
+      data: null,
       error: null,
     };
   }
@@ -39,5 +39,6 @@ export default class DataLoader extends Component {
 DataLoader.propTypes = {
   loadData: PropTypes.func.isRequired,
   render: PropTypes.func.isRequired,
+  component: PropTypes.element,
 
 };
