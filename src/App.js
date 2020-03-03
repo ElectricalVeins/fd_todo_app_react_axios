@@ -1,8 +1,16 @@
 import React from 'react';
-import {createTask as createTaskReq, getUserTasks, updateTaskById} from "./api";
+import {
+  createTask as createTaskReq,
+  getUsersList,
+  getUserTasks,
+  updateTaskById
+} from './api';
 import './App.css';
+import TasksList from './components/TasksList';
+import UsersList from './components/UsersList';
+import withData from './components/HOC/withData.js';
 
-class App extends React.Component {
+/*class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -113,6 +121,16 @@ class App extends React.Component {
             </div>
         )
     }
-}
+}*/
 
-export default App;
+const UsersListWithData = withData(UsersList, getUsersList);
+const TasksListWithData = withData(TasksList, getUserTasks);
+
+export default function (props) {
+  return (
+    <div style={{ display: 'flex' }}>
+      <UsersListWithData/>
+      <TasksListWithData/>
+    </div>
+  );
+}

@@ -31,5 +31,5 @@ export async function updateTaskById(id,data) {
 }
 
 export async function getUsersList () {
-    return axios.get(`${baseUrl}/users`)
+    return axios.get(`${baseUrl}/admin/users`)
 }
