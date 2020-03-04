@@ -14,6 +14,7 @@ import DataLoader from './components/DataLoader/index.js';
 import Home from './pages/Home.js'
 import About from './pages/About.js'
 import Contacts from './pages/Contacts.js'
+import DropMenu from './components/DropMenu';
 /*class App extends React.Component {
     constructor(props) {
         super(props);
@@ -126,14 +127,17 @@ import Contacts from './pages/Contacts.js'
         )
     }
 }*/
+/*
 
 const UsersListWithData = withData(UsersList, getUsersList);
 const TasksListWithData = withData(TasksList, getUserTasks);
+*/
 
 export default function (props) {
   return (
+    <DropMenu></DropMenu>
 
-    <BrowserRouter>
+   /* <BrowserRouter>
       <Switch>
         <Route exact path ='/'>
           <Home/>
@@ -145,7 +149,7 @@ export default function (props) {
           <Contacts/>
         </Route>
       </Switch>
-    </BrowserRouter>
+    </BrowserRouter>*/
 
   );
 }
