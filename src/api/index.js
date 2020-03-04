@@ -1,35 +1,44 @@
 import axios from 'axios';
-
-const baseUrl='http://192.168.0.113:3030/api'
+import { BASE_URL } from '../constants';
 
 axios.interceptors.request.use((config) => {
-
-    config.headers['authorization'] = '1';
-
-    return config
+  // config.headers['authorization'] = '1';
+  return config;
 }, (error) => {
-    return Promise.reject(error)
+  return Promise.reject(error);
 });
 
-/**
- * send request
- * @param task
- * @returns {Promise<AxiosResponse<T>>}
- */
-export const createTask = async (task) => await axios.post(`${baseUrl}/task`,task);
+axios.interceptors.response.use(null, error => {
 
-/**
- *
- * @returns {Promise<AxiosResponse<T>>}
- */
-export async function getUserTasks() {
-    return axios.get(`${baseUrl}/tasks`)
-}
+  const { status } = error.response;
+  console.log(error)
+  alert('err');
 
-export async function updateTaskById(id,data) {
-    return axios.put(`${baseUrl}/task/${id}`,data)
-}
+  switch (status) {
+    case 401:
+      alert('authorization required 401');
+      break;
+    case 402:
+      alert('intercept 402');
+      break;
+    case 403:
+      alert('intercept 403');
+      break;
+  }
 
-export async function getUsersList () {
-    return axios.get(`${baseUrl}/admin/users`)
-}
+  return Promise.reject(error);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+

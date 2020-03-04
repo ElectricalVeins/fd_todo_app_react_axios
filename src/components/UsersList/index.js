@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import withData from '../HOC/withData.js';
 
 export default function UsersList (props) {
 
