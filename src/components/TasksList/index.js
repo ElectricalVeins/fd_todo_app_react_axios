@@ -5,12 +5,12 @@ import withData from '../HOC/withData.js';
 
 let TasksList = (props) => {
 
-  const { tasks, isFetching } = props;
+  const { items, isFetching } = props;
 
   return (
     <ol>
       {
-        tasks.map(item => (
+        items.map(item => (
           <li
             key={item.id}>
             {

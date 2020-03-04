@@ -19,17 +19,17 @@ axios.interceptors.response.use(null, async error => {
 
   switch (status) {
     case 401:
-      alert(`${data} Error code: ${status}`);
+      //alert(`${data} Error code: ${status}`);
 
-     axios.post(`${BASE_URL_T}/sign_in`, {}).then(res => {
+      /*axios.post(`${BASE_URL_T}/sign_in`, {}).then(res => {
         error.config.headers['authorization'] = res.data;
-    return axios.request(error.config)
+        return axios.request(error.config);
       });
-
-   /*   const {data}= await axios.post(`${BASE_URL_T}/sign_in`, {});
-      error.config.headers.authorization = data;
-      return axios.request(error.config);
 */
+       const {data}= await axios.post(`${BASE_URL_T}/sign_in`, {});
+         error.config.headers.authorization = data;
+         return axios.request(error.config);
+
       console.log('success');
 
       break;
