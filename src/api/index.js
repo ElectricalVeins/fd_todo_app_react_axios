@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from '../constants';
+import { BASE_URL, BASE_URL_T } from '../constants';
 
 axios.interceptors.request.use((config) => {
   // config.headers['authorization'] = '1';
@@ -8,15 +8,30 @@ axios.interceptors.request.use((config) => {
   return Promise.reject(error);
 });
 
-axios.interceptors.response.use(null, error => {
+axios.interceptors.response.use(null, async error => {
 
-  const { status } = error.response;
-  console.log(error)
-  alert('err');
+  const { status, data } = error.response;
+  /*
+    console.log(error.response);
+    console.log(error.request);
+    console.log(error.config);
+  */
 
   switch (status) {
     case 401:
-      alert('authorization required 401');
+      alert(`${data} Error code: ${status}`);
+
+     axios.post(`${BASE_URL_T}/sign_in`, {}).then(res => {
+        error.config.headers['authorization'] = res.data;
+    return axios.request(error.config)
+      });
+
+   /*   const {data}= await axios.post(`${BASE_URL_T}/sign_in`, {});
+      error.config.headers.authorization = data;
+      return axios.request(error.config);
+*/
+      console.log('success');
+
       break;
     case 402:
       alert('intercept 402');

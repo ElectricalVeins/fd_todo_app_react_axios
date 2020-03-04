@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL as baseUrl } from '../constants';
+import { BASE_URL as baseUrl,BASE_URL_T } from '../constants';
 
 /**
  * send request
@@ -14,5 +14,5 @@ export const createTask = async (task) => await axios.post(`${baseUrl}/task`,
  * @returns {Promise<AxiosResponse<T>>}
  */
 export async function getUserTasks () {
-  return axios.get(`${baseUrl}/tasks`);
+  return axios.get(`${BASE_URL_T}/tasks`);
 }
